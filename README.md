@@ -1,6 +1,5 @@
-# zzj-library-source
+# mpp-library-source
 
-> npm 内网仓库地址 http://repo.spdio.com/repository/npm-cq/
 
 ## 包含内容
 
@@ -8,6 +7,6 @@
 >>> 📚源码目录  \project\zzj
 >>> 📚示例代码目录  \src\app\router\gantt-page\xmpp-demo
 
-> 2. ...
+
  
 ...💬
