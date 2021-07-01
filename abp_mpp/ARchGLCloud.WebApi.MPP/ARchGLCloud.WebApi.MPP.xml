@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ARchGLCloud.WebApi.MPP</name>
+    </assembly>
+    <members>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.CalendarController.UpdateException(System.Collections.Generic.List{ARchGLCloud.Application.MPP.Dtos.CalendarExceptionDto})">
+            <summary>
+              更新项目例外日期
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.CalendarController.AddException(System.Collections.Generic.List{ARchGLCloud.Application.MPP.Dtos.CalendarExceptionDto})">
+            <summary>
+              添加项目例外日期
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.CalendarController.DeleteException(System.Guid)">
+            <summary>
+              添加项目例外日期
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.CalendarController.updateWeekDays(System.Guid,System.Collections.Generic.List{ARchGLCloud.Application.MPP.Dtos.CalendarWeekDayDto})">
+            <summary>
+              更新项目工作周
+            </summary>
+        </member>
+        <member name="T:ARchGLCloud.WebApi.MPP.Controllers.MppImportExportController">
+            <summary>
+              MS project MPP/MPX import/export support
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.MppImportExportController.export(System.Guid)">
+            <summary>
+            导出MPP文档 XML 格式
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.MppImportExportController.Import(ARchGLCloud.Application.MPP.Dtos.ImportMppDto)">
+            <summary>
+            导入MPP文档
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.MppImportExportController.MppImport(ARchGLCloud.Application.MPP.Dtos.ImportMppDto)">
+            <summary>
+            导入MPP文档
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.MppImportExportController.importXml(System.Guid,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            导入xml文档
+            </summary>
+        </member>
+        <member name="T:ARchGLCloud.WebApi.MPP.Controllers.ProjectController">
+            <summary>
+              Mpp Project's controller
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.CreateProject(System.Guid,ARchGLCloud.Application.MPP.Dtos.CreateProjectDto)">
+            <summary>
+            创建项目，parentId为自定义父级id
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.GetProjects(System.Guid)">
+            <summary>
+              通过parentId查询所有项目
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.GetProject(System.Guid)">
+            <summary>
+              获取项目信息
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.UpdateProject(System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              更新项目
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.DeleteProject(System.Guid)">
+            <summary>
+              删除项目
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.GetAttributes(System.Guid)">
+            <summary>
+             获取项目资源（extendedattributes）
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.CreateAttribute(System.Guid,ARchGLCloud.Domain.MPP.Models.ExtendedAttribute)">
+            <summary>
+              创建项目资源
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.DeleteAttribute(System.Guid,System.Guid)">
+            <summary>
+              删除项目资源
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.CreateAssignment(System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              创建项目分配
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.ProjectController.DeleteAssignment(System.Guid,System.Guid)">
+            <summary>
+              删除项目分配
+            </summary>
+        </member>
+        <member name="T:ARchGLCloud.WebApi.MPP.Controllers.TaskController">
+            <summary>
+              Mpp Project's tasks controller
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.GetAllTasks(System.Guid)">
+            <summary>
+            Get all tasks
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.GetTask(System.Guid,System.Guid)">
+            <summary>
+              Get task TASKID meta data, include ExtendedAttributes,
+              PredecessorLinks, Baselines.
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.CreateTask(System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Create task by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.DeleteTask(System.Guid,System.Guid)">
+            <summary>
+              Delete task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PutTask(System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Update task TASKID meta data by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PutTasks(System.Guid,Newtonsoft.Json.Linq.JArray)">
+            <summary>
+              Batch create/update/delete data by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PostAttribute(System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Create attribute of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.DeleteAttribute(System.Guid,System.Guid,System.Guid)">
+            <summary>
+              Delete attribute ATTRID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PutAttribute(System.Guid,System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Update attribute ATTRID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PostLink(System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Create predecessor link of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.DeleteLink(System.Guid,System.Guid,System.Guid)">
+            <summary>
+              Delete predecessor link LINKID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PutLink(System.Guid,System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Update predecessor link LINKID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PostBaseline(System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Create baseline of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.DeleteBaseline(System.Guid,System.Guid,System.Guid)">
+            <summary>
+              Delete baseline BASEID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+        <member name="M:ARchGLCloud.WebApi.MPP.Controllers.TaskController.PutBaseline(System.Guid,System.Guid,System.Guid,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+              Update baseline BASEID of task TASKID by MPPPROJECTID
+            </summary>
+        </member>
+    </members>
+</doc>

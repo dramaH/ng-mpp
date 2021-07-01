@@ -1,0 +1,20 @@
+diff a/ARchGLCloud.Application.MPP/Services/ImportExportService.cs b/ARchGLCloud.Application.MPP/Services/ImportExportService.cs	(rejected hunks)
+@@ -475,15 +475,15 @@
+                 throw new XmlException($"Failed to parse the xml from {xmlFilePath}, missing node: Project");
+             }
+ 
+-            return ParseProject(root, out project);
++            return ParseProject(root, project);
+         }
+         /// <summary>
+         /// ������Ŀ
+         /// </summary>
+         /// <returns></returns>
+-        public bool ParseProject(XmlNode root, out Project project)
++        public bool ParseProject(XmlNode root, Project project)
+         {
+-            project = new Project();
++
+             try
+             {
+                 XmlParseGeneral(root, ref project);
