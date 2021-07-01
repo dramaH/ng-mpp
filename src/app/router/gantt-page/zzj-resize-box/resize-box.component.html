@@ -1,0 +1,24 @@
+<div class="resize-box" #box [ngStyle]="chatStyle">
+    <div class="resize-bar-group">
+        <div class="resize-bar-n" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', true, false, false, false)">
+            <div class="slider horizontal"></div>
+        </div>
+        <div class="resize-bar-s" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, true, false, false)">
+            <div class="slider horizontal"></div>
+        </div>
+        <div class="resize-bar-w" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, false, true, false)">
+            <div class="slider vertical"></div>
+        </div>
+        <div class="resize-bar-e" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, false, false, true)">
+            <div class="slider vertical"></div>
+        </div>
+    </div>
+    <div class="resize-chunk resizeLT" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', true, false, true, false)"></div>
+    <div class="resize-chunk resizeRT" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', true, false, false, true)"></div>
+    <div class="resize-chunk resizeRB" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, true, false, true)"></div>
+    <div class="resize-chunk resizeLB" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, true, true, false)"></div>
+    <!-- <div class="mask" (mousedown)="adjustPanel($event, chatStyleModel, 'move')"></div> -->
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+</div>

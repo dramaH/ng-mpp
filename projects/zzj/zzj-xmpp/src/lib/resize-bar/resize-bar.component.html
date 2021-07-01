@@ -1,0 +1,7 @@
+<!-- 即时改变容器宽高 -->
+<div class="separate noChild" (mousedown)="mousedown($event)" draggable="false" *ngIf="!lazyMove"></div>
+<!-- 先拖拽再改变容器宽高 -->
+<div style="position:relative" class="separate" *ngIf="lazyMove">
+    <div class="child" (mousedown)="lazyMoveMouseDown($event)"  draggable="false"
+        [ngStyle]="resizeChildStyle"></div>
+</div>

@@ -1,0 +1,412 @@
+/**
+ * 基础-scss
+ * @remark 包括：公共变量、重置样式、公共函数
+ */
+
+:host ::ng-deep .ant-menu-item-selected::after {
+  opacity: 0;
+}
+// :host ::ng-deep .ant-menu-inline .ant-menu-selected:after, .ant-menu-inline .ant-menu-item-selected:after{
+//   opacity: 0 !important;
+// }
+
+::ng-deep .common-main-wrap .common-main-hd .common-bread-search {
+  margin-top: 0;
+}
+
+/* You can add global styles to this file, and also import other style files */
+a:active, a:hover, a:focus {
+  outline: 0;
+  text-decoration: none;
+}
+
+.xmpp-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover{
+      width: 10px;
+      height: 10px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+  }
+
+  // &:hover{
+  //   &::-webkit-scrollbar {
+  //     width: 10px;
+  //     height: 10px;
+  //     overflow: hidden;
+  //     cursor: pointer;
+  //   }
+
+  //   &::-webkit-scrollbar-thumb {
+  //     background-color: #acacac;
+  //     cursor: pointer;
+  //   }
+  // }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    cursor: pointer;
+
+    &:hover{
+      background-color: #acacac;
+      cursor: pointer;
+    }
+  }
+}
+
+// 超出隐藏
+.hidden-row {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+
+  &.long {
+    max-width: 150px;
+  }
+
+  &.longer {
+    max-width: 180px;
+  }
+
+  &.longest {
+    max-width: 210px;
+  }
+
+  &.auto {
+    max-width: auto;
+  }
+}
+
+// 面包屑
+.breadcrumb {
+  height: 70px;
+  line-height: 50px;
+  font-size: 14px;
+  overflow: hidden;
+
+  .head-left {
+    float: left;
+  }
+
+  .head-right {
+    float: right;
+  }
+}
+
+.common-bread-search {
+  float: right;
+  margin-top: 10px;
+  min-width: 280px;
+}
+
+.common-main-wrap {
+  margin: 30px;
+
+  // 页面头部
+  .common-main-hd {
+    min-height: 70px;
+    padding-bottom: 10px;
+    line-height: 50px;
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+
+    // 面包屑
+    .common-bread-crumb {
+      // display: inline-block;
+      // width: auto;
+      float: left;
+      margin-top: 23px;
+    }
+
+    .common-bread-search {
+      float: right;
+      margin-top: 10px;
+      min-width: 280px;
+    }
+
+    .common-table-filter {
+      float: right;
+      margin-top: 10px;
+    }
+
+    @media screen and (max-width: 1200px) {
+      .common-bread-crumb {
+        float: none;
+        display: block;
+      }
+
+      .common-table-filter {
+        float: none;
+        display: block;
+      }
+    }
+  }
+
+  // 内容
+  .common-main-cont {
+    position: relative;
+    height: auto;
+    // margin-top: 40px;
+  }
+}
+
+.common-table-wrap {
+  // border: 1px solid #CCC;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 8px #ddd;
+  background-color: #fff;
+
+  &.auto {
+    .ant-table-wrapper {
+      min-width: auto;
+    }
+  }
+
+  .common-table-cont {
+    max-height: 660px;
+    height: 640px;
+    // overflow: auto;
+
+    .ant-table-thead {
+      .ant-table-row {
+        th {
+          background: linear-gradient(#ffffff, #f8f8f8);
+          padding: 10px;
+        }
+      }
+    }
+
+
+  }
+
+  .ant-table-wrapper {
+    overflow-x: auto;
+    min-width: 1300px;
+  }
+
+  .common-pager {
+    margin: 10px;
+    text-align: center;
+    position: relative;
+
+    .common-pager-helper {
+      float: left;
+    }
+  }
+}
+
+.input-file {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+// 顶部导航栏
+.outer-layout,
+.inner-layout {
+  height: 60px;
+  box-shadow: 0px 0px 8px #ddd;
+  position: relative;
+  z-index: 100;
+  background: #fff;
+  padding: 0 25px;
+
+  .outer-layout-left,
+  .inner-layout-left {
+    line-height: 60px;
+    float: left;
+
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  .outer-layout-right,
+  .inner-layout-right {
+    float: right;
+    line-height: 60px;
+
+    a {
+      color: #000;
+    }
+
+    .outer-layout-right-user,
+    .inner-layout-right-user {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.common-table-status-green {
+  color: #75bf03;
+}
+
+.common-table-status-orange {
+  color: orange;
+}
+
+.common-table-status-red {
+  color: red;
+}
+.common-table-status-gray {
+  color: #ccc;
+}
+
+
+
+::ng-deep .ant-table-thead > tr > th {
+  background-color: #fff;
+}
+
+// 结构树图标样式
+:host ::ng-deep .ant-tree li span.ant-tree-switcher.ant-tree-switcher_close .ant-tree-switcher-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+:host ::ng-deep .ant-tree li span.ant-tree-switcher.ant-tree-switcher_open .ant-tree-switcher-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+// 列表滚动条修改
+
+:host ::ng-deep .ant-table-fixed-header .ant-table-scroll .ant-table-header {
+  overflow-y: hidden;
+}
+
+::ng-deep.ant-input-affix-wrapper .ant-input-suffix {
+  right: 0;
+}
+::ng-deep.ant-input-search.ant-input-search-enter-button > .ant-input {
+  padding-right: 46px;
+}
+
+:host ::ng-deep .ant-table-body {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #acacac;
+  }
+}
+
+::ng-deep .ant-modal-body {
+  box-sizing: border-box;
+  // padding-left: 60px;
+}
+
+::ng-deep .ant-col-4 {
+  text-align: center;
+  // width: 12.666667%;
+}
+
+::ng-deep .ant-pagination-item-active,
+::ng-deep .ant-pagination-item-active:hover {
+  background-color: #419fe8;
+  a {
+    color: #fff;
+  }
+}
+
+.ant-btn-primary:hover {
+  background-color: #3d8fcd;
+  border-color: #3d8fcd;
+}
+
+.ant-btn-primary[disabled],
+.ant-btn-primary.disabled:hover,
+.ant-btn-primary[disabled]:hover {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+}
+// ::ng-deep .ant-modal-confirm-body .ant-modal-confirm-content {
+//   color: #999999;
+// }
+// ::ng-deep .ant-btn {
+//   color: rgba(0, 0, 0, 0.65);
+//   border-color: #d9d9d9;
+//   &:hover {
+//     color: #6cbef5;
+//     border-color: #6cbef5;
+//   }
+// }
+::ng-deep .ant-modal-close:hover {
+  color: #419fe8 !important;
+}
+
+::ng-deep .ant-modal-confirm-error {
+  top: 300px;
+}
+
+::ng-deep .ant-modal-confirm-confirm {
+  top: 300px;
+}
+
+::ng-deep .ant-modal-confirm-btns {
+  .ant-btn:first-child {
+    border-color: #d9d9d9;
+    color: rgba(0, 0, 0, 0.65);
+    &:hover {
+      color: #6cbef5;
+      background-color: #fff;
+      border-color: #6cbef5;
+    }
+  }
+}
+
+.breadcrumb {
+  color: #acacac;
+}
+::ng-deep .ant-select-dropdown-menu {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #acacac;
+  }
+}
+::ng-deep .ant-modal-header {
+  padding-right: 40px;
+}
+
+::ng-deep .ant-table-placeholder {
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+}

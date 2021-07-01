@@ -1,0 +1,48 @@
+<ng-template cdk-portal #overlayGlobalTemplate="cdkPortal">
+    <div class="zzjModalContainer">
+        <div #zzModal [ngStyle]="chatStyle" class="zzModal not-select" [ngClass]="zzClassName">
+            <div *ngIf="zzResizable" class="resize-chunk resizeRB" (mousedown)="adjustPanel($event, chatStyleModel, 'resize', false, true, false, true)">
+                <svg t="1574146397760" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2566" width="20" height="20">
+                <path
+                    d="M938.666667 938.666667h-85.333334v-85.333334h85.333334v85.333334m0-170.666667h-85.333334v-85.333333h85.333334v85.333333m-170.666667 170.666667h-85.333333v-85.333334h85.333333v85.333334m0-170.666667h-85.333333v-85.333333h85.333333v85.333333m-170.666667 170.666667h-85.333333v-85.333334h85.333333v85.333334m341.333334-341.333334h-85.333334v-85.333333h85.333334v85.333333z"
+                    fill="" p-id="2567"></path>
+                </svg>
+            </div>
+            <div #zzHeader class="zz-header" (mousedown)="adjustPanel($event, chatStyleModel, 'move')">
+                <ng-container [ngSwitch]="true">
+                    <ng-container *ngSwitchCase="isTemplateRef(zzTitle)" [ngTemplateOutlet]="zzTitle"></ng-container>
+                    <ng-container *ngSwitchCase="isNonEmptyString(zzTitle)">
+                        <div>
+                            {{zzTitle}}
+                            <span class="close">
+                                <!-- <i (click)="clickOnCancel()" class="anticon anticon-close"></i> -->
+                                <i (click)="clickOnCancel()" nz-icon nzType="close" nzTheme="outline"></i>
+                            </span>
+                            <span class="close" style="margin-right: 16px;" *ngIf="showIcon">
+                <i (click)="expandOrNarrow()" nz-icon [nzType]="nzType ? 'fullscreen' : 'fullscreen-exit'"
+                  nzTheme="outline"></i>
+              </span>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="zz-content zzj-scrollbar">
+                <ng-template [ngTemplateOutlet]="zzContent || defaultContent"></ng-template>
+                <ng-template #defaultContent>
+                    <ng-content></ng-content>
+                </ng-template>
+            </div>
+            <div class="zz-footer">
+                <ng-template [ngTemplateOutlet]="zzFooter || defaultFooter"></ng-template>
+                <ng-template #defaultFooter>
+                    <div class="defaultFooter">
+                        <button nz-button nzType="default" (click)="clickOnCancel()">取消</button>
+                        <button nz-button nzType="primary" (click)="clickOnOk()" [nzLoading]="nzOkLoading">确定</button>
+                    </div>
+                    
+                    
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-template>

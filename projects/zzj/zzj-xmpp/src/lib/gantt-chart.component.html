@@ -1,0 +1,35 @@
+<div class="progress" #container style="display: block;">
+    <div class="maskLoading" *ngIf="Xmpp.globalLoading">
+        <nz-spin [nzSize]="'large'"></nz-spin>
+    </div>
+    <div class="progress-item" [ngStyle]="schedulePnlStyle">
+        <!-- 进度模块 -->
+        <div class="gantt-container" #ganttContainer>
+            <!-- <div class="header-box">
+                <app-tool-bar [Xmpp]="Xmpp" *ngIf="Xmpp.showTools"></app-tool-bar>
+            </div> -->
+            <div class="gantt-panel">
+                <!-- <div class="top-box" [ngStyle]="topPnlStyle"> -->
+                <div class="handlerArea">
+                    <div class="task-box" #taskbox [ngStyle]="leftPnlStyle" (mousewheel)="mousewheelhandler($event)">
+                        <app-task-box (newTaskBlur)="newTaskBlur($event)" [Xmpp]="Xmpp" #taskPanel></app-task-box>
+                    </div>
+                    <div class="separate">
+                        <app-resize-bar (resizeCallback)="resizeCallback($event)" [lazyMove]="true" [mode]="'between-hor'" [before]="leftPanel" [after]="rightPanel">
+                        </app-resize-bar>
+                    </div>
+                    <div class="gantt-box" [ngStyle]="rightPnlStyle" (mousewheel)="mousewheelhandler($event)">
+                        <app-gantt-box #ganttPanel [Xmpp]="Xmpp" [canvasInfo]="Xmpp.draw.canvasInfo">
+                        </app-gantt-box>
+                    </div>
+                </div>
+                <div class="scrollBar xmpp-scrollbar" (scroll)="scrollHandler($event)">
+                    <div class="scrollList" [style.height]="scrollListHeight + 'px'"></div>
+                </div>
+                <!-- </div> -->
+                <!-- 底部模块 -->
+            </div>
+        </div>
+        <!-- 进度容器 -->
+    </div>
+</div>

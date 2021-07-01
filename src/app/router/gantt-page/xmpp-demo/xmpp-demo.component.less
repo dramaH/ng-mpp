@@ -1,0 +1,48 @@
+::ng-deep .gantt-panel{
+    width: 100%;height: 100%;position: relative;padding-top:10px;padding-bottom:10px;
+    .progress{
+        border: 1px solid #333;
+    }
+    .projectId{
+
+      border-bottom: 1px dashed #ccc;
+      height: 44px;
+      width: 1680px;
+
+        input{
+            width: 300px;
+        }
+    }
+    .buttons{
+      text-align: center;
+      margin-top: 30px;
+        .button{
+            i{
+                margin-right: 5px;
+            }
+            display: inline-block;
+            padding: 0 10px;
+            border-right: 1px solid #ccc;
+            cursor: pointer;
+            &:hover{
+                color:#419fe8
+            }
+        }
+    }
+    .outerContainer{
+        height: 100%;
+        width: 100%;
+        .mask{
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            text-align: center;
+            font-size: 30px;
+            padding-top: 100px;
+            background: #fff;
+        }
+    }
+}

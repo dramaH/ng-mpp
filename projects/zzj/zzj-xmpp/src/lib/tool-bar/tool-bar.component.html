@@ -1,0 +1,184 @@
+<div class="toolbar">
+    <div class="buttonGroup">
+
+        <div class="icon-group">
+            <!-- <nz-tooltip [nzTitle]="'日历设置'" [nzPlacement]="'top'" (click)="calenderShow()">
+        <i nz-tooltip class="fa fa-calendar"></i>
+        <span nz-tooltip class="sp sp_calendar"></span>
+      </nz-tooltip> -->
+            <!-- <nz-tooltip [nzTitle]="'插入行'" [nzPlacement]="'top'" (click)="addTask()">
+                <span nz-tooltip class="sp sp_add"></span>
+            </nz-tooltip> -->
+            <nz-tooltip [nzTitle]="'删除行'" [nzPlacement]="'top'" (click)="deleteTask()">
+                <span nz-tooltip class="sp sp_delete"></span>
+                <!-- <i nz-tooltip class="anticon anticon-delete"></i> -->
+            </nz-tooltip>
+            <!-- <nz-tooltip [nzTitle]="'添加里程碑'" [nzPlacement]="'top'" (click)="addMilepost()">
+                <span nz-tooltip class="sp sp_milestone"></span>
+            </nz-tooltip> -->
+            <nz-tooltip [nzTitle]="'升级'" [nzPlacement]="'top'" (click)='promoteTaskLevel()'>
+                <span nz-tooltip class="sp sp_upLevel"></span>
+                <!-- <i nz-tooltip class="anticon anticon-caret-up"></i> -->
+            </nz-tooltip>
+            <nz-tooltip [nzTitle]="'降级'" [nzPlacement]="'top'" (click)="depressTaskLevel()">
+                <span nz-tooltip class="sp sp_downLevel"></span>
+                <!-- <i nz-tooltip class="anticon anticon-caret-down"></i> -->
+            </nz-tooltip>
+            <!-- <nz-tooltip [nzTitle]="'绑定构件'" [nzPlacement]="'top'" (click)="bingdingGUID(true)">
+        <span nz-tooltip class="sp sp_bind"></span>
+      </nz-tooltip>
+      <nz-tooltip [nzTitle]="'解绑构件'" [nzPlacement]="'top'" (click)="unbingdingGUID()">
+        <span nz-tooltip class="sp sp_unbind"></span>
+      </nz-tooltip> -->
+            <!-- <nz-tooltip [nzTitle]="'追加构件'" [nzPlacement]="'top'" (click)="addBingdingGUID($event)">
+        <span nz-tooltip class="sp sp_addbind"></span>
+      </nz-tooltip>
+      <nz-tooltip [nzTitle]="'确认追加'" [nzPlacement]="'top'" (click)="configBingdingGUID($event)">
+        <span nz-tooltip class="sp sp_configBind"></span>
+      </nz-tooltip> -->
+            <!-- <nz-tooltip [nzTitle]="'施工模拟'" [nzPlacement]="'top'" (click)="showModal()">
+        <span nz-tooltip class="sp sp_play"></span>
+      </nz-tooltip> -->
+            <nz-tooltip [nzTitle]="'保存'" [nzPlacement]="'top'" (click)="saveTasks('save')">
+                <span nz-tooltip class="sp sp_save"></span>
+                <!-- <i nz-tooltip class="fa fa-floppy-o"></i> -->
+            </nz-tooltip>
+            <nz-tooltip [nzTitle]="'刷新横道图'" [nzPlacement]="'top'" (click)="refresh()">
+                <span nz-tooltip class="sp sp_refresh"></span>
+                <!-- <i nz-tooltip class="fa fa-refresh"></i> -->
+            </nz-tooltip>
+            <!-- <nz-tooltip [nzTitle]="'缩小横道图'" [nzPlacement]="'top'" (click)="compress()">
+        <span nz-tooltip class="sp sp_compress"></span>
+      </nz-tooltip>
+      <nz-tooltip [nzTitle]="'放大横道图'" [nzPlacement]="'top'" (click)="expand()">
+        <span nz-tooltip class="sp sp_expand"></span>
+      </nz-tooltip> -->
+
+
+            <!-- <nz-tooltip [nzTitle]="'提交'" [nzPlacement]="'top'">
+        <i nz-tooltip class="fa fa-floppy-o"></i>
+      </nz-tooltip> -->
+        </div>
+        <!-- <div class="button-group group1">
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="calenderShow()">
+        <i class="anticon anticon-calendar"></i>
+        <span>日历设置</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="addTask($event)">
+        <i class="anticon anticon-file-add"></i>
+        <span>插入行</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="deleteTask($event)">
+        <i class="anticon anticon-delete"></i>
+        <span>删除行</span>
+      </button>
+    </div>
+    <div class="button-group group2">
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="addMilepost($event)">
+        <i class="anticon anticon-environment"></i>
+        <span>添加里程碑</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)='promoteTaskLevel($event)'>
+        <i class="anticon anticon-caret-up"></i>
+        <span>升级</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="depressTaskLevel($event)">
+        <i class="anticon anticon-caret-down"></i>
+        <span>降级</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="bingdingGUID($event)">
+        <i class="anticon anticon-pushpin"></i>
+        <span>绑定构件</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="unbingdingGUID($event)">
+        <i class="anticon anticon-pushpin-o"></i>
+        <span>解绑构件</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="addBingdingGUID($event)">
+        <i class="anticon anticon-pushpin-o"></i>
+        <span>追加构件</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="small" (click)="configBingdingGUID($event)">
+        <i class="anticon anticon-pushpin-o"></i>
+        <span>确认追加</span>
+      </button>
+    </div>
+    <div class="button-group group3">
+      <button nz-button [nzType]="'primary'" [nzSize]="small" (click)="saveTasks('save')">
+        <i class="anticon anticon-save"></i>
+        <span>保存</span>
+      </button>
+      <button nz-button [nzType]="'primary'" [nzSize]="small" (click)="saveTasks('submit')">
+        <i class="anticon anticon-check"></i>
+        <span>提交审核</span>
+      </button>
+      <button nz-button [nzType]="'primary'" [nzSize]="small">
+        <i class="anticon anticon-upload"></i>
+        <span>导入计划</span>
+      </button>
+      <button nz-button [nzType]="'primary'" [nzSize]="small">
+        <i class="anticon anticon-download"></i>
+        <span>导出计划</span>
+      </button>
+      <button nz-button [nzType]="'primary'" [nzSize]="small" (click)="showModal()">
+        <i class="anticon anticon-video-camera"></i>
+        <span>施工模拟</span>
+      </button>
+    </div> -->
+        <div class="clearfix"></div>
+    </div>
+    <!-- <div *ngIf="simulate" class="simulate" style="height:46px;padding: 10px 30px 0px 10px;">
+    <nz-progress [nzPercent]="_percent"></nz-progress>
+    <nz-button-group class="button-group">
+      <button nz-button [nzType]="'ghost'" (click)="decline()">
+        <i class="anticon anticon-backward"></i>
+      </button>
+      <button nz-button [nzType]="'ghost'" (click)="play()" [disabled]="playdisabled">
+        <i class="anticon anticon-caret-right"></i>
+      </button>
+      <button nz-button [nzType]="'ghost'" (click)="pause()" [disabled]="pausedisabled">
+        <i class="anticon anticon-pause-circle"></i>
+      </button>
+      <button nz-button [nzType]="'ghost'" (click)="increase()">
+        <i class="anticon anticon-forward"></i>
+      </button>
+    </nz-button-group>
+    <button nz-button [nzType]="'default'" [nzSize]="small" (click)="simulateHide($event)" class="back-btn">
+      <span>退出模拟</span>
+    </button>
+    <span class="startDate">开始时间：{{showStart? showStart : ''}}</span>
+    <span class="startDate" *ngIf="finishDate">构件完成时间：{{finishDate? finishDate : ''}}</span>
+    <span class="startDate" *ngIf="diffDate">时差：{{diffDate? diffDate : ''}} 天</span>
+  </div> -->
+    <!-- <nz-modal [nzVisible]="simulateVisible" [nzTitle]="'选择时间段'" [nzContent]="modalContent" (nzOnCancel)="simulateCancel($event)"
+    (nzOnOk)="simulateOk()">
+    <ng-template #modalContent>
+      <nz-date-picker style="width: 40%;" [(ngModel)]="startDate" (ngModelChange)="startDate=$event;startValueChange()" [nzDisabledDate]="disabledStartDate"
+        placeholder="'Start date'"></nz-date-picker>
+      ~
+      <nz-date-picker style="width: 40%;" [(ngModel)]="endDate" (ngModelChange)="endDate=$event;endValueChange()" [nzDisabledDate]="disabledEndDate"
+        placeholder="'End date'"></nz-date-picker>
+    </ng-template>
+  </nz-modal> -->
+    <!-- <nz-modal [nzVisible]="calenderVisible" [nzTitle]="'日历设置'" [nzContent]="calenderContent" (nzOnCancel)="calenderCancel()"
+    (nzOnOk)="calenderOk()">
+    <ng-template #calenderContent>
+      <div class="expect-day" *ngIf="ganttService.currentGanttInfo && ganttService.currentGanttInfo.exceptDate">
+        <div class="list">
+          <div class="expectRow" *ngFor="let date of ganttService.currentGanttInfo.exceptDate;let i = index">
+            <input nz-input [(ngModel)]="date.name" placeholder="'请输入名称'">
+            <nz-date-picker [(ngModel)]="date.startDate" placeholder="'开始时间'" (ngModelChange)="changeStartDate(date)"></nz-date-picker>
+            ~
+            <nz-date-picker [(ngModel)]="date.endDate" placeholder="'结束时间'" (ngModelChange)="changeEndDate(date)"></nz-date-picker>
+            <i class="anticon anticon-delete" (click)="deletDate(i)"></i>
+          </div>
+        </div>
+        <div class="addButton">
+          <button nz-button [nzType]="'primary'" (click)="addDate()">
+            <span>增加例外日期</span>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </nz-modal> -->
+</div>

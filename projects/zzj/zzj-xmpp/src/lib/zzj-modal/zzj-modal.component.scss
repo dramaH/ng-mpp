@@ -1,0 +1,85 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+::ng-deep .backdrop {
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.not-select {
+    -moz-user-select: none;
+    /*火狐*/
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -ms-user-select: none;
+    /*IE10*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    user-select: none;
+}
+
+$resize-bar-size: 10px;
+$color: #008dff;
+.resize-chunk {
+    width: $resize-bar-size;
+    height: $resize-bar-size;
+    position: absolute;
+}
+
+.resizeRB {
+    z-index: 10;
+    cursor: nw-resize;
+    bottom: 8px;
+    right: 8px;
+}
+
+.zzModal {
+    // position: absolute;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.zzModal {
+    .zz-header {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 50px;
+        padding: 0px 24px;
+        font-weight: bold;
+        font-size: 18px;
+        z-index: 999;
+        position: absolute;
+        top: 0px;
+        .close {
+            float: right;
+            cursor: pointer;
+            i{
+                cursor: pointer;
+            }
+        }
+    }
+    .zz-content {
+        padding: 15px;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+    }
+    .zz-footer {
+        border-top: 1px solid #e8e8e8;
+        width: 100%;
+        
+        position: absolute;
+        bottom: 0px;
+        button {
+            margin: 0 5px;
+        }
+        .defaultFooter{
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px;
+            text-align: right;
+        }
+    }
+}

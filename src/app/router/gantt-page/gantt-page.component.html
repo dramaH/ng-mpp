@@ -1,0 +1,51 @@
+<div class="gantt-page">
+  <div style="float: left">
+    <ul nz-menu nzMode="inline">
+      <li nz-submenu nzTitle="zzj-library 快速开始" nzIcon="mail" nzOpen>
+        <ul>
+
+
+
+          <li nz-menu-group nzTitle="mpp">
+            <ul>
+              <li
+                nz-menu-item
+                [routerLink]="['/gantt/demo']"
+                [nzMatchRouter]="'/gantt/demo'"
+              >
+                示例
+              </li>
+              <li
+                nz-menu-item
+                [routerLink]="['/gantt/readme/project-init']"
+                [nzMatchRouter]="'/gantt/project-init'"
+              >
+                初始化
+              </li>
+              <li
+                nz-menu-item
+                [routerLink]="['/gantt/readme/project-import']"
+                [nzMatchRouter]="'/gantt/project-import'"
+              >
+                导入项目
+              </li>
+            </ul>
+          </li>
+
+          <li nz-menu-group nzTitle="tips">
+            <ul>
+              <li nz-menu-item>编译发布</li>
+              <!-- <li nz-menu-item>Option 4</li> -->
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div style="float: left" class="center-panel">
+    <div class="markdown-container" style="height: 100%">
+      <!-- <markdown [src]="'/assets/gantt-readme/'+routeType+'.md'"></markdown> -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

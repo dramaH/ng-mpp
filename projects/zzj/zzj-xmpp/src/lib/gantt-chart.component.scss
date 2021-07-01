@@ -1,0 +1,366 @@
+@import "./sass/base.scss";
+
+.progress {
+    height: 100%;
+    background-color: #fff;
+    z-index: 802;
+    
+    .maskLoading{
+        background: rgba(233, 233, 233, 0.5);
+        position: absolute;
+        z-index: 999;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        .ant-spin-nested-loading{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    }
+    .btn-container {
+        position: absolute;
+        left: -40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333333;
+        opacity: 0.36;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+    .progress-item {
+        height: 100%;
+        transition: all .3s;
+        font-size: 12px;
+    }
+}
+
+::ng-deep .gantt-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    .header-box {
+        width: 100%;
+        height: 40px;
+        background: #f9f9f9;
+        line-height: 40px;
+        border-bottom: 1px solid #e5e5e5;
+        .button {
+            float: right;
+            padding: 0px 10px;
+            color: #419fe8;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .title {
+            padding: 0 20px;
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            float: left;
+        }
+        .anticon-menu-unfold {
+            cursor: pointer;
+        }
+    }
+    .gantt-panel {
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    .top-box {
+        overflow: hidden;
+        position: relative;
+    }
+    .bottom-box {
+        position: relative;
+        transition: all 0.5s ease;
+        .fold {
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            font-size: 22px;
+            cursor: pointer;
+            top: 10px;
+            z-index: 9;
+        }
+        p.item {
+            display: inline-block;
+            margin: 10px 48px;
+            margin-left: 16px;
+            label {
+                display: inline-block;
+                width: 90px;
+            }
+            input {
+                width: 170px;
+            }
+        }
+        p.edit:hover {
+            cursor: pointer;
+            color: #419fe8;
+        }
+    }
+}
+
+::ng-deep .dialog-newProgress {
+    .top-form {
+        .row {
+            margin: 10px 0px;
+        }
+    }
+    .expect-day {
+        .list {
+            max-height: 200px;
+            overflow: hidden;
+            overflow-y: auto;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            .row {
+                margin: 10px 0px;
+            }
+        }
+    }
+    .expect-day .list .row input {
+        width: 120px;
+        margin-right: 10px;
+    }
+    .expect-day .list .row .ant-calendar-picker {
+        width: 120px;
+    }
+    .expect-weekday {
+        .list {
+            padding: 0px 20px;
+        }
+        .row {
+            margin: 10px 0px;
+        }
+    }
+    p.title {
+        padding: 15px 15px 8px 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #d9d9d9;
+        color: #199d89;
+        margin-bottom: 20px;
+    }
+}
+
+:host ::ng-deep .gantt-mask {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    height: 100%;
+    // left: 3px;
+    background: rgba(233, 233, 233, 0.5);
+    z-index: 9;
+    text-align: center;
+    nz-spin {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .warnning {
+        text-align: center;
+        color: #419fe8;
+        margin-top: 200px;
+        font-size: 24px;
+    }
+}
+
+.handlerArea {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+}
+
+.separate {
+    width: 2px;
+    height: 100%;
+    float: left;
+    // cursor: col-resize;
+    z-index: 801;
+    // position: absolute;
+    background: #ccc;
+    // transition: all .3s;
+}
+
+.task-box {
+    float: left;
+    position: relative;
+    height: 100%;
+}
+
+.gantt-box {
+    position: relative;
+    float: left;
+    height: 100%;
+    overflow: hidden;
+}
+
+.scrollBar {
+    width: 20px;
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    overflow-y: scroll;
+    z-index: 1;
+}
+
+// ::ng-deep .settingModal {
+//     .ant-modal-content {
+//         width: 700px;
+//     }
+//     .name {
+//         display: inline-block;
+//         margin-left: 10px;
+//         input {
+//             width: 200px;
+//         }
+//     }
+//     .duration {
+//         display: inline-block;
+//         margin-left: 20px;
+//         nz-input-number {
+//             width: 100px;
+//         }
+//     }
+//     .line {
+//         margin-top: 10px;
+//         position: relative;
+//         height: 20px;
+//         /* text-align: center; */
+//         border-bottom: 1px solid #419fe8;
+//         margin-bottom: 10px;
+//         width: 100%;
+//         span {
+//             position: absolute;
+//             color: #419fe8;
+//             padding: 10px;
+//             background: #fff;
+//             left: 50%;
+//             transform: translateX(-50%);
+//         }
+//     }
+//     .relation {
+//         margin-top: 15px;
+//         .row {
+//             width: 100%;
+//             height: 40px;
+//             line-height: 40px;
+//             padding: 0px 10px;
+//         }
+//         .title {
+//             padding: 10px;
+//             span {
+//                 display: inline-block;
+//                 text-align: center;
+//             }
+//             span:nth-child(1) {
+//                 width: 80px;
+//             }
+//             span:nth-child(2) {
+//                 width: 180px;
+//             }
+//             span:nth-child(3) {
+//                 width: 130px;
+//             }
+//             span:nth-child(4) {
+//                 width: 100px;
+//             }
+//         }
+//         .row {
+//             .item {
+//                 display: inline-block;
+//             }
+//             .item:nth-child(1) {
+//                 width: 80px;
+//             }
+//             .item:nth-child(2) {
+//                 width: 180px;
+//                 text-align: center;
+//                 nz-select {
+//                     width: 160px;
+//                 }
+//             }
+//             .item:nth-child(3) {
+//                 width: 160px;
+//                 text-align: center;
+//             }
+//             .item:nth-child(4) {
+//                 width: 100px;
+//             }
+//         }
+//         .anticon-delete {
+//             margin-left: 5px;
+//         }
+//     }
+// }
+
+
+:host ::ng-deep .ant-input {
+    height: 30px;
+    font-size: 12px;
+}
+
+::ng-deep .ganttList .ant-modal-footer {
+    display: none;
+}
+
+.listContent {
+    max-height: 500px;
+    overflow: auto;
+    .item {
+        padding: 10px;
+        border-bottom: 1px solid #e8e8e8;
+        cursor: pointer;
+        span {
+            display: inline-block;
+            width: 360px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        span:hover {
+            color: #419fe8;
+        }
+        i {
+            color: #419fe8;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+    }
+    .item:hover {
+        background: rgba(204, 204, 204, 0.24);
+    }
+}
+
+// ::ng-deep .uploadMPPmodel {
+//   .name {
+//     input {
+//       width: 300px;
+//     }
+//   }
+//   .attachment-item {
+//     .btn-link {
+//       cursor: pointer;
+//       color: #419fe8;
+//     }
+//   }
+// }
+::ng-deep .createGanttModal {
+    .row .title {
+        border-left: 3px solid #2dbdc5;
+        padding: 3px 10px;
+        margin: 10px 0;
+        display: block;
+    }
+}

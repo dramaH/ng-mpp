@@ -1,0 +1,32 @@
+<div class="ganttGanttBox">
+    <canvas id="myCanvas" #myCanvas></canvas>
+    <canvas id="maskCanvas" #maskCanvas></canvas>
+    <div class="task-list xmpp-scrollbar" (scroll)="boxScroll($event)">
+        <div class="toolHeader">
+            <div class="uprow" [style.width]="calendarWidth * Xmpp.draw.baseZoom +'px'">
+                <div *ngFor="let week of weeksArry" class="weeks"
+                    [style.width]="Xmpp.calendar.baseCellWidth * 7 * Xmpp.draw.baseZoom + 'px'">
+                    {{week}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="downrow" [style.width]="calendarWidth * Xmpp.draw.baseZoom +'px'">
+                <div class="weeksContent">
+
+                    <div class="weeksArry" *ngFor="let week of weeksArry">
+   
+                            <div class="weekday" [style.width]="Xmpp.calendar.baseCellWidth* Xmpp.draw.baseZoom + 'px'"
+                                *ngFor="let day of Xmpp.calendar.weekDays">
+                                <span *ngIf=" Xmpp.calendar.baseCellWidth* Xmpp.draw.baseZoom >= 15">{{day.dayText}}</span>
+                            </div>
+        
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <nz-spin [nzSize]="'large'" *ngIf="loadingShow"></nz-spin>
+        <div class="ganttBack" [ngStyle]="{'width':calendarWidth+'px'}"></div>
+    </div>
+</div>

@@ -1,0 +1,393 @@
+<div class="ganttTaskBox xmpp-scrollbar">
+  <div class="toolHeader" [style.width]="Xmpp.column.totalWidth + 'px'">
+    <div class="column id" [style.width]="'46px'" (click)="selectAll()">
+      序号
+    </div>
+    <ng-container *ngFor="let c of Xmpp.column.columnNames">
+      <ng-container *ngIf="c.key != 'checkbox' && c.key != 'taskName'">
+        <div class="column" [style.width]="c.width + 'px'">
+          {{ c.name }}
+        </div>
+        <app-resize-bar
+          *ngIf="c.resize"
+          [lazyMove]="true"
+          [mode]="'single-width'"
+          (resizeCallback)="resizeCallback($event, c)"
+        >
+        </app-resize-bar>
+      </ng-container>
+
+      <ng-container *ngIf="c.key == 'taskName'">
+        <div
+          class="column"
+          style="text-align: left; padding-left: 16px"
+          [style.width]="c.width + 'px'"
+        >
+          {{ c.name }}
+        </div>
+        <app-resize-bar
+          *ngIf="c.resize"
+          [lazyMove]="true"
+          [mode]="'single-width'"
+          (resizeCallback)="resizeCallback($event, c)"
+        >
+        </app-resize-bar>
+      </ng-container>
+
+      <ng-container *ngIf="c.key == 'checkbox' && c.key != 'taskName'">
+        <div
+          class="column"
+          *ngIf="c.key == 'checkbox'"
+          [style.width]="c.width + 'px'"
+        >
+          <label
+            nz-checkbox
+            [(ngModel)]="isAllselected"
+            (ngModelChange)="selectAllTask()"
+          ></label>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="task-list">
+    <ng-container *ngFor="let task of Xmpp.task.showTask; let i = index">
+      <div
+        class="row"
+        [ngClass]="{ isSummary: task.childTaskID.length > 0 }"
+        (dblclick)="showSettings($event, task)"
+        (click)="clickTaskRow($event, task)"
+        [style.width]="Xmpp.column.totalWidth + 'px'"
+        [ngStyle]="{
+          background: task.isSelected ? Xmpp.task.selectedTaskColor : ''
+        }"
+      >
+        <div class="column id" [style.width]="'46px'">{{ task.id }}</div>
+        <ng-container *ngFor="let c of Xmpp.column.columnNames">
+          <!-- 标签 -->
+          <div
+            class="column tags"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            [style.width]="c.width + 'px'"
+            *ngIf="c.type == 'tags'"
+          >
+            <ng-container *ngFor="let tag of task.tags">
+              <i
+                *ngIf="!tag.iconUrl && tag.iconType"
+                nz-icon
+                [nzType]="tag.iconType"
+                nzTheme="outline"
+              ></i>
+              <img *ngIf="tag.iconUrl" [src]="tag.iconUrl" alt="" />
+            </ng-container>
+          </div>
+          <!-- 选择框 -->
+          <div
+            class="column"
+            style="height: 36px"
+            [style.width]="c.width + 'px'"
+            *ngIf="c.type == 'checkbox'"
+          >
+            <label nz-checkbox [(ngModel)]="task.isSelected"></label>
+          </div>
+          <!-- 普通输入框 -->
+          <div
+            class="column"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            [style.width]="c.width + 'px'"
+            *ngIf="c.type == 'input' && c.key != 'taskName'"
+            (click)="cloneTask(c, task)"
+          >
+            <input
+              [value]="task[c.key] ? task[c.key] : ''"
+              style="text-align: center"
+              (blur)="editStuteChange(c, task, $event)"
+              (keydown)="test(c, task, $event)"
+              type="text"
+            />
+          </div>
+
+          <!-- 资源分配 -->
+          <!-- <div class="column" style="height: 36px;"
+                        [ngClass]="{'active':currentTask && currentTask.id == task.id && currentKey == c.key}"
+                        [style.width]="c.width+'px'" *ngIf="c.key == 'assignment'" (click)="cloneTask(c, task)">
+                        <input [value]="task['assignmentsStr']" style="text-align: center;"
+                            (blur)="editStuteChange(c, task, $event, true)" type="text"
+                            (keydown)="test(c, task, $event)">
+                    </div> -->
+
+          <!-- 前置任务 -->
+          <!-- <div class="column" style="height: 36px;"
+                        [ngClass]="{'active':currentTask && currentTask.id == task.id && currentKey == c.key}"
+                        [style.width]="c.width+'px'" *ngIf="c.key == 'relation'" (click)="cloneTask(c, task)">
+                        <input [value]="task['prevRelationStr']" style="text-align: center;"
+                            (blur)="editStuteChange(c, task, $event, true)" type="text"
+                            (keydown)="test(c, task, $event)">
+                    </div> -->
+
+          <!-- 名字 -->
+          <div
+            *ngIf="c.key == 'taskName'"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            class="column taskName"
+            (click)="cloneTask(c, task)"
+            [style.width]="c.width + 'px'"
+            [style.padding-left]="task.level * 15 + 'px'"
+          >
+            <svg
+              (click)="foldTaskLevel(task)"
+              [style.left]="(task.level - 1) * 15 + 'px'"
+              *ngIf="task.childTaskID.length > 0 && !task.isFold"
+              t="1590660935150"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="9190"
+              width="200"
+              height="200"
+            >
+              <path
+                d="M298.666667 426.666667l213.333333 213.333333 213.333333-213.333333z"
+                p-id="9191"
+              ></path>
+            </svg>
+            <svg
+              (click)="openTaskLevel(task)"
+              [style.left]="(task.level - 1) * 15 + 'px'"
+              *ngIf="task.childTaskID.length > 0 && task.isFold"
+              t="1590660884184"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="9071"
+              width="200"
+              height="200"
+            >
+              <path
+                d="M426.666667 725.333333l213.333333-213.333333-213.333333-213.333333z"
+                p-id="9072"
+              ></path>
+            </svg>
+            <div class="name">
+              <input
+                [value]="task.taskName"
+                (blur)="editStuteChange(c, task, $event)"
+                (keydown)="test(c, task, $event)"
+                class="edit"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <!-- 日期选择 -->
+          <div
+            class="date column"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            (click)="cloneTask(c, task)"
+            [style.width]="c.width + 'px'"
+            *ngIf="c.type == 'date'"
+          >
+            <ng-container>
+              <input
+                class="input"
+                [value]="task[c.key] ? task[c.key] : ''"
+                (blur)="editStuteChange(c, task, $event, true)"
+                type="text"
+                (keydown)="test(c, task, $event)"
+              />
+              <input
+                style="color: rgba(0, 0, 0, 0)"
+                class="date"
+                [value]="task[c.key] ? task[c.key] : ''"
+                #inputFile
+                type="date"
+                (change)="editStuteChange(c, task, $event, true)"
+              />
+            </ng-container>
+          </div>
+
+          <!-- text -->
+          <div
+            class="column"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            [style.width]="c.width + 'px'"
+            *ngIf="
+              c.type == 'text' && c.key != 'taskName' && c.key != 'isMilepost'
+            "
+          >
+            {{ task[c.key] ? task[c.key] : "" }}
+          </div>
+
+          <!-- text -->
+          <div
+            class="column"
+            style="height: 36px"
+            [ngClass]="{
+              active:
+                currentTask && currentTask.id == task.id && currentKey == c.key
+            }"
+            [style.width]="c.width + 'px'"
+            *ngIf="c.type == 'text' && c.key == 'isMilepost'"
+          >
+            {{ task[c.key] ? "是" : "否" }}
+          </div>
+
+          <div class="resize_placeholder" *ngIf="c.resize"></div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- 任务编辑弹窗 -->
+<zzj-modal
+  [zzRemovable]="true"
+  zzTitle="编辑任务"
+  zzClassName="settingModal"
+  [(zzVisible)]="settingModalView"
+  (zzOnCancel)="settingModalView = false"
+  (zzOnOk)="settingSave()"
+  (zzOnCancel)="settingModalView = false"
+>
+  <div class="content" *ngIf="editInfo">
+    <div class="row name">
+      <label>任务名称</label>
+      <input nz-input [(ngModel)]="editInfo.taskName" />
+    </div>
+
+    <div class="row" style="padding-left: 80px">
+      <label for="" style="position: absolute; top: 3px; left: 1px"
+        >前置任务</label
+      >
+      <div class="relation-content">
+        <div class="title">
+          <div style="width: 20%">标识</div>
+          <div style="width: 25%">任务名</div>
+          <div style="width: 30%">类型</div>
+          <div style="width: 15%">延隔</div>
+          <div style="width: 10%"></div>
+        </div>
+        <div class="relation" *ngIf="Xmpp.allTasks.length > 0">
+          <div
+            class="relation-row"
+            *ngFor="let item of editInfo.relations; let i = index"
+          >
+            <div class="col" style="width: 20%">
+              <nz-input-number
+                style="width: 100%"
+                [(ngModel)]="item.prevId"
+                [nzMin]="1"
+                [nzMax]="Xmpp.allTasks.length"
+                [nzStep]="1"
+              ></nz-input-number>
+            </div>
+            <div class="col" style="width: 25%">
+              <nz-select
+                style="width: 100%"
+                placeholder="'选择一个任务'"
+                [(ngModel)]="item.prevId"
+                [nzShowSearch]="true"
+              >
+                <nz-option
+                  *ngFor="let option of Xmpp.allTasks"
+                  [nzLabel]="option.id + ':' + option.taskName"
+                  [nzValue]="option.id"
+                >
+                </nz-option>
+              </nz-select>
+            </div>
+            <div class="col" style="width: 30%">
+              <nz-select
+                style="width: 100%"
+                [(ngModel)]="item.relation"
+                placeholder="'choose option'"
+              >
+                <nz-option
+                  [nzLabel]="'完成-完成(FF)'"
+                  [nzValue]="PREVTYPE.FF"
+                ></nz-option>
+                <nz-option
+                  [nzLabel]="'完成-开始(FS)'"
+                  [nzValue]="PREVTYPE.FS"
+                ></nz-option>
+                <nz-option
+                  [nzLabel]="'开始-完成(SF)'"
+                  [nzValue]="PREVTYPE.SF"
+                ></nz-option>
+                <nz-option
+                  [nzLabel]="'开始-开始(SS)'"
+                  [nzValue]="PREVTYPE.SS"
+                ></nz-option>
+              </nz-select>
+            </div>
+            <div class="col" style="width: 15%">
+              <nz-input-number
+                style="width: 100%"
+                [(ngModel)]="item.delay"
+                [nzMin]="0"
+                [nzStep]="1"
+              >
+              </nz-input-number>
+            </div>
+            <div class="col" style="width: 10%">
+              <i
+                *ngIf="!(editInfo.relations.length == 1 && i == 0)"
+                nz-icon
+                nzType="delete"
+                nzTheme="outline"
+                (click)="deleteRelation(i)"
+                style="margin-right: 10px"
+              ></i>
+              <!-- <i *ngIf="i == editInfo.relations.length -1" class="anticon anticon-plus"
+                                (click)="addRelation()"></i> -->
+              <i
+                *ngIf="i == editInfo.relations.length - 1"
+                nz-icon
+                nzType="plus"
+                nzTheme="outline"
+                (click)="addRelation()"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row resource">
+      <label>任务资源</label>
+      <input nz-input [(ngModel)]="editInfo.assignmentsStr" />
+    </div>
+    <div class="row resource">
+      <label>任务等级</label>
+      <input nz-input [(ngModel)]="editInfo.taskLevel" />
+    </div>
+    <div class="row resource">
+      <label>是否里程碑</label>
+      <!-- <input nz-input [(ngModel)]="editInfo.taskLevel" /> -->
+      <nz-switch
+        [(ngModel)]="editInfo.isMilepost"
+        (ngModelChange)="onIsMilepostChange($event)"
+      ></nz-switch>
+    </div>
+  </div>
+</zzj-modal>

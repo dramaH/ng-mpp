@@ -1,0 +1,165 @@
+
+
+::ng-deep .toolbar {
+    background: #fff;
+    // border-bottom: 3px solid #ffffff;
+    .work-type {
+        color: #454545;
+        padding: 0px 25px;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 1px 1px 1px #ccc;
+    }
+    .ant-switch-checked{
+        background-color: #419fe8;
+    }
+    .close {
+            float: right;
+            width: 20px;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+            top: -2px;
+    }
+    .button-group {
+        display: inline-block;
+        font-size: 0px;
+        button {
+            border-radius: 0px;
+            margin-right: 5px;
+        }
+        button.ant-btn-default {
+            background: #454545;
+            color: #fff;
+        }
+        button.ant-btn-default:hover {
+            border-color: #8b8b8b;
+            background: #959595;
+        }
+        button:last-child {
+            margin-right: 0px
+        }
+    }
+    .icon-group{
+        background: #f9f9f9;
+        border: 1px solid #e5e5e5;
+        overflow: hidden;
+        height: 40px;
+        i{
+            font-size: 18px;
+            color: #454545;
+            cursor: pointer;
+            margin: 0px 7px;
+        }
+        .switch{
+            position: relative;
+            top: 10px;
+            float: right;
+            margin: 0 10px;
+            right: 57px;
+        }
+        .sp{
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            // margin: 0 2px;
+        }
+        .sp_calendar{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -253px;
+            cursor: pointer;
+        }
+        .sp_add{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -285px;
+            cursor: pointer;
+        }
+        .sp_delete{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -349px;
+            cursor: pointer;
+        }
+        .sp_milestone{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -381px;
+            cursor: pointer;
+        }
+        .sp_upLevel{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -667px;
+            cursor: pointer;
+        }
+        .sp_downLevel{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -635px;
+            cursor: pointer;
+        }
+        .sp_bind{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -412px;
+            cursor: pointer;
+        }
+        .sp_unbind{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -443px;  
+            cursor: pointer;
+        }
+        .sp_addbind{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -476px;
+            cursor: pointer;
+        }
+        .sp_configBind{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -509px;
+            cursor: pointer;
+        }
+        .sp_play{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -539px;
+            cursor: pointer;
+        }
+        .sp_save{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -571px;
+            cursor: pointer;
+        }
+        .sp_refresh{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -603px;
+            cursor: pointer;
+        }
+        .sp_compress{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -253px;
+            cursor: pointer;
+        }
+        .sp_expand{
+            background-image: url('/assets/images/sprite-icon.png');
+            background-position: -100px -253px;
+            cursor: pointer;
+        }
+    }
+}
+
+.expectRow {
+    margin: 10px 0px;
+}
+
+:host ::ng-deep .expectRow nz-input {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.button-group{
+    position: absolute;
+    left: 8px;
+    top: 60px;
+}
+.back-btn{
+    position: absolute;
+    top: 60px;
+    left: 180px;
+}

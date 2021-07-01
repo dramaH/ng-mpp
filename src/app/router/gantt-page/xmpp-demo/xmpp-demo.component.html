@@ -1,0 +1,201 @@
+<div class="gantt-panel">
+  <div class="projectId">
+    &nbsp; &nbsp;
+    <button nz-button>HOSTURL</button>
+    &nbsp;
+    <input
+      nz-input
+      placeholder="请输入目标域名或地址"
+      [(ngModel)]="currentHostUrl"
+    />
+    &nbsp; &nbsp;
+    <button nz-button>ProjectId</button>
+    &nbsp;
+    <input
+      nz-input
+      placeholder="请输入进度项目id"
+      [(ngModel)]="currentProjectId"
+    />
+    &nbsp; &nbsp;
+    <button nz-button nzType="default" (click)="initProject(currentProjectId)">
+      加载
+    </button>
+    &nbsp; &nbsp;
+    <button nz-button nzType="primary" (click)="download()">
+      <i nz-icon nzType="download"></i>下载demo
+    </button>
+  </div>
+  <div class="buttons">
+    <div class="button" (click)="ganttCreateView = true">
+      <i nz-icon nzType="plus-square" nzTheme="outline"></i>新建
+    </div>
+    <div class="button" (click)="uploadProjectView = true">
+      <i nz-icon nzType="copy" nzTheme="outline"></i>导入
+    </div>
+    <div class="button" (click)="downloadXML()">
+      <i nz-icon nzType="copy" nzTheme="outline"></i>导出xml
+    </div>
+    <div class="button" (click)="bindTest()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>绑定构件
+    </div>
+    <div class="button" (click)="promoteTaskLevel()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>升级
+    </div>
+    <div class="button" (click)="depressTaskLevel()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>降级
+    </div>
+    <div class="button" (click)="addTaskHandle()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>插入任务
+    </div>
+    <div class="button" (click)="deleteTask()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>删除
+    </div>
+    <div class="button" (click)="saveTasksHanle()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>保存
+    </div>
+    <div class="button" (click)="download()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>下载
+    </div>
+    <div class="button" (click)="settingWeekDays()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>设置工作周
+    </div>
+    <div class="button" (click)="settingExceptions()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>设置例外日期
+    </div>
+    <div class="button" (click)="zoom('in')">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>缩小
+    </div>
+    <div class="button" (click)="zoom('out')">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>放大
+    </div>
+    <div class="button" (click)="setMilepost()">
+      <i nz-icon nzType="tag" nzTheme="outline"></i>设置里程碑
+    </div>
+    <nz-date-picker
+      style="width: 0px; height: 0px; opacity: 0"
+      [nzOpen]="isOpen"
+    ></nz-date-picker>
+  </div>
+  <zzj-resize-box
+    (resizeEvent)="resizeEvent($event)"
+    #resizebox
+    [initStyle]="initStyle"
+  >
+    <div class="outerContainer" style="padding: 15px">
+      <div class="mask" *ngIf="loadingTextShow">加载中。。。</div>
+      <div class="gantt-container">
+        <ng-template #ganttContainer></ng-template>
+      </div>
+    </div>
+  </zzj-resize-box>
+</div>
+
+<!-- 导入进度mpp -->
+<nz-modal
+  [nzMaskClosable]="false"
+  [nzOkLoading]="isOkLoading"
+  [(nzVisible)]="uploadProjectView && uploadForm"
+  nzTitle="导入project"
+  (nzOnCancel)="uploadCancel()"
+  (nzOnOk)="uploadMPPHandle()"
+>
+  <div class="uploadMPPmodel">
+    <div class="name">
+      <span
+        >进度名称：
+        <input nz-input [(ngModel)]="uploadForm.uploadTitle" />
+      </span>
+    </div>
+    <div class="attachment">
+      <!--<div class="attachment-item btn-link" (click)="inputFile.click()">选择附件</div>-->
+      <div class="attachment-item">
+        <span class="attachment-item btn-link" (click)="inputFile.click()"
+          >上传文件(支持.mpp,.xml格式文件)</span
+        >
+      </div>
+      <div class="attachment-item">
+        <span class="file-name" *ngIf="uploadForm.uploadMMP">{{
+          uploadForm.uploadMMP.name
+        }}</span>
+      </div>
+      <input
+        style="width: 0; height: 0"
+        #inputFile
+        type="file"
+        class="input-file"
+        (change)="selectFile($event)"
+        accept=".mpp,.xml"
+      />
+    </div>
+  </div>
+</nz-modal>
+
+<!-- 新建进度 -->
+<nz-modal
+  [(nzVisible)]="ganttCreateView"
+  nzTitle="新建进度"
+  (nzOnCancel)="ganttCreateView = false"
+  (nzOnOk)="submitCreateGantt()"
+>
+  <div class="createGanttModal">
+    <div class="row">
+      <span class="title">进度名称：</span>
+      <input nz-input [(ngModel)]="createForm.title" />
+    </div>
+    <div class="row">
+      <span class="title">选择时间区间：</span>
+      <nz-range-picker
+        [nzFormat]="'yyyy/MM/dd'"
+        [(ngModel)]="createForm.dateFormat"
+      ></nz-range-picker>
+    </div>
+    <div class="row">
+      <span class="title">创建人：{{ createForm.author }}</span>
+    </div>
+  </div>
+</nz-modal>
+
+<!-- 新建进度 -->
+<nz-modal
+  [(nzVisible)]="weekDaysSettingView"
+  nzTitle="设置工作周"
+  (nzOnCancel)="weekDaysSettingView = false"
+  (nzOnOk)="weekDaysSettingSubmit()"
+>
+  <div class="weekDaysList">
+    <div class="weekDay" *ngFor="let wd of Xmpp.calendar.weekDays">
+      <label for="">{{ wd.dayText }}</label>
+      <nz-switch [(ngModel)]="wd.dayWorking"></nz-switch>
+    </div>
+  </div>
+</nz-modal>
+
+<!-- 新建进度 -->
+<nz-modal
+  [(nzVisible)]="exceptionsSettingView"
+  nzTitle="设置例外日期"
+  (nzOnCancel)="exceptionsSettingView = false"
+  (nzOnOk)="exceptionsSettingSubmit()"
+>
+  <div class="weekDaysList">
+    <div class="weekDay" *ngFor="let ep of exceptionList; let i = index">
+      <input
+        nz-input
+        placeholder="请输入例外日期名称"
+        [(ngModel)]="ep.name"
+        style="width: 80px; display: inline-block"
+      />
+      <nz-date-picker [(ngModel)]="ep.fromDate"></nz-date-picker>
+      ~ <nz-date-picker [(ngModel)]="ep.toDate"></nz-date-picker>
+      <i
+        nz-icon
+        nzType="delete"
+        nzTheme="outline"
+        (click)="deleteException(ep, i)"
+      ></i>
+    </div>
+    <button nz-button nzType="primary" (click)="addException()">
+      添加例外日期
+    </button>
+  </div>
+</nz-modal>

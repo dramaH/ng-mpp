@@ -1,0 +1,36 @@
+.separate {
+  width: 1px;
+  height: 100%;
+  position: relative;
+  left: -1px;
+  background: #ccc;
+  float: left;
+  // cursor: col-resize;
+
+
+  .child {
+    cursor: ew-resize;
+    margin: auto;
+    left: -5px;
+    height: 100%;
+    // width: 100%;
+    background: red;
+    position: absolute;
+    width: 10px;
+    z-index: 1999;
+    background: #ccc;
+
+    // &:hover {
+    //   width: 5px;
+    // }
+  }
+
+  &.noChild {
+    position: relative;
+    z-index: 199;
+
+    &:hover {
+      width: 5px;
+    }
+  }
+}

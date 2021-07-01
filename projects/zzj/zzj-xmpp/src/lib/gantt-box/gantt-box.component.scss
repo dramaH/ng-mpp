@@ -1,0 +1,110 @@
+@import "../sass/base.scss";
+
+.ganttGanttBox {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    // overflow-x: auto;
+    right: 0px;
+    left: 0px;
+
+    canvas {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 50px;
+        bottom: 0px;
+        z-index: 99;
+        ;
+
+
+    }
+
+    #maskCanvas {
+        z-index: 100;
+    }
+}
+
+.task-list {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    overflow-x: auto;
+
+    .row {
+        height: 40px;
+        border-bottom: 1px solid #e5e5e5;
+        background: #fff;
+    }
+
+    .ganttBack {
+        height: 100%;
+        position: absolute;
+        top: 0px;
+    }
+
+}
+
+.toolHeader {
+    background: #ffffff;
+    height: 50px;
+    color: #000;
+    text-align: center;
+
+
+    .uprow {
+        height: 50%;
+        border-bottom: 1px solid #e5e5e5;
+        text-align: left;
+
+        .weeks {
+            height: 100%;
+            border-right: 1px solid #e5e5e5;
+            display: inline-block;
+            text-align: center
+        }
+    }
+
+    .downrow {
+        height: 50%;
+        border-bottom: 1px solid #e5e5e5;
+
+        .weeksContent {
+            height: 100%;
+        }
+
+        .weeksArry {
+            height: 100%;
+            float: left
+        }
+
+        .weekday {
+            border-right: 1px solid #e5e5e5;
+            height: 100%;
+            float: left;
+        }
+    }
+}
+
+:host ::ng-deep .ganttGanttBox .task-list {
+    nz-spin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3
+    }
+
+    .mask {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+}

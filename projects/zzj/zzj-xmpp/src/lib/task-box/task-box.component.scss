@@ -1,0 +1,550 @@
+@import "../sass/base.scss";
+
+/*----------用来移除向下箭头----------*/
+
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//     display: none;
+// }
+
+/*----------用来移除上下箭头----------*/
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+  background-color: none;
+  background: none;
+
+  &:hover {
+    background-color: none;
+    background: none;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  background-color: transparent;
+  background-image: url("/assets/images/baseline-arrow_drop_down-24px.svg");
+  background-size: 20px;
+  background-position: -2px -2px;
+  cursor: pointer;
+  color: #666;
+}
+
+/*控制下拉小箭头的*/
+// input[type="date"]::-webkit-calendar-picker-indicator {
+//     width: 0;
+//     height: 0;
+//     border-left: 3 solid transparent;
+//     border-right: 3 solid transparent;
+//     border-top: 6 solid red;
+// }
+
+// input[type="date"]::-webkit-calendar-picker-indicator{
+//     color: black;
+// }
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: rgba(0, 0, 0, 0);
+  background: none;
+}
+
+
+/*----------用来移除叉叉按钮----------*/
+
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+.toolHeader {
+  background: #fff;
+  height: 50px;
+  border-bottom: 1px solid #e5e5e5;
+
+  .resize-bar {
+    width: 2px;
+    background: #ccc;
+    border: none;
+  }
+
+  .column {
+    float: left;
+    padding: 0px 10px;
+    height: 100%;
+    color: #000;
+    line-height: 50px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-right: 1px solid #ccc;
+
+    span.disabled {
+      color: #2dbdc5
+    }
+  }
+
+  .column.taskName {
+    text-align: left;
+    padding-left: 13px;
+    position: relative;
+  }
+
+  .column.id {
+    cursor: pointer;
+
+    &:hover {
+      background: #999;
+    }
+  }
+
+}
+
+
+.ganttTaskBox {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.resize-bar {
+  width: 1px;
+  cursor: col-resize;
+  height: 100%;
+  float: left;
+}
+
+.greyFont {
+  color: #cccccc
+}
+
+::ng-deep .task-list {
+  position: absolute;
+  bottom: 0px;
+  top: 50px;
+
+  .row {
+    cursor: pointer;
+    height: 36px;
+    background: #fff;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+    position: relative;
+
+    .column {
+      float: left;
+      padding: 0px 10px;
+      color: #000000;
+      line-height: 36px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+    }
+
+    .resize-bar {
+      width: 2px;
+      background: #ccc
+    }
+  }
+
+  .row:hover {
+    // border: 1px solid rgba(65, 159, 232, 0.6);
+    // background: rgba(65, 159, 232, 0.6);
+    // border-color:rgba(65, 159, 232, 0.6)
+  }
+
+  .gantt_active {
+    background: rgba(65, 159, 232, 0.6)
+  }
+
+  .anticon-environment {
+    color: #419fe8;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner,
+  .ant-checkbox-indeterminate .ant-checkbox-inner {
+    background-color: #419fe8;
+    border-color: #419fe8;
+  }
+
+  .ant-checkbox-input:focus+.ant-checkbox-inner,
+  .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+  .ant-checkbox:hover .ant-checkbox-inner {
+    border-color: #419fe8;
+  }
+
+  .columnBorder {
+    position: absolute;
+  }
+
+  .column.active {
+    // border:2px solid #419fe8;
+    // top: 1px;
+  }
+
+
+  .column.taskName {
+    position: relative;
+    float: left;
+
+    // padding: 0px 12px;
+    .name {
+      text-align: left;
+      padding: 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    svg {
+      -webkit-transform: scale(0.7);
+      transform: scale(0.7);
+      cursor: pointer;
+      float: left;
+      position: absolute;
+      left: 0;
+      top: 8px;
+      z-index: 9;
+      font-size: 15px;
+      margin-right: 4px;
+      width: 23px;
+      height: 23px;
+    }
+
+    input.newTask {
+      width: 100%;
+      height: 100%;
+      float: left;
+      border: 1px solid #ccc;
+    }
+  }
+
+
+  .column.id {
+    background: #cccccc40;
+  }
+
+  .column.tags {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    i,
+    img {
+      margin: 0 3px;
+    }
+  }
+
+  .column.resize-bar {
+    padding: 0px !important;
+  }
+
+  .column.prevtask {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+    }
+  }
+
+  .column.date {
+    position: relative;
+
+    input.input {
+      position: absolute;
+      left: 0;
+      z-index: 9;
+      // background: #ff8e8e;
+      width: calc(100% - 12px);
+      text-align: center;
+    }
+
+    input.date {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .column input {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: none;
+    height: 100%;
+    width: 100%;
+    // &.edit{
+    //     border: 1px solid #cccccc;
+    // }
+  }
+}
+
+
+
+// .column.startDate {
+//     width: 120px;
+// }
+
+// .column.duration {
+//     width: 75px;
+//     input {
+//         width: 100%
+//     }
+// }
+
+// .column.endDate {
+//     width: 120px;
+// }
+
+// .column.actualStartDate {
+//     width: 120px;
+// }
+
+// .column.actualDuration {
+//     width: 50px
+// }
+
+// .column.actualEndDate {
+//     width: 120px;
+// }
+
+// .column.finishSubmit,
+// .column.finishRate,
+// .column.submit {
+//     width: 70px
+// }
+
+// .column.finishRate,
+// .column.submit {
+//     i {
+//         cursor: pointer
+//     }
+//     i:hover {
+//         color: #8a8a8a
+//     }
+// }
+
+// ::ng-deep .column input {
+//     border: none;
+//     outline: none;
+//     box-shadow: none;
+//     background: none;
+//     height: 100%;
+//     width: 100%;
+//     // &.edit{
+//     //     border: 1px solid #cccccc;
+//     // }
+// }
+
+// .column:nth-child(9) input,
+// .column:nth-child(12) input {
+//     text-align: center;
+// }
+
+// ::ng-deep .ant-input-number {
+//     position: relative;
+//     padding: 4px 7px;
+//     width: 100%;
+//     cursor: text;
+//     line-height: 1.5;
+//     color: rgba(0, 0, 0, 0.65);
+//     background-color: #fff;
+//     background-image: none;
+//     transition: all .3s;
+//     margin: 0;
+//     height: 100%;
+//     display: inline-block;
+//     border: 1px solid #d9d9d9;
+// }
+
+.isKey {
+  // color: #fe7f81 !important
+}
+
+.resize_placeholder {
+  position: relative;
+  left: -1px;
+  width: 1px;
+  background: #ccc;
+  height: 100%;
+  float: left;
+}
+
+
+// ::ng-deep .column.duration {
+//     .ant-input {
+//         text-align: center
+//     }
+// }
+
+::ng-deep .gantt_isParent .ant-input {
+  font-weight: bold;
+}
+
+::ng-deep .gantt_isChild .ant-input {
+  padding-left: 10px !important;
+}
+
+// ::ng-deep .column .anticon {
+//     cursor: pointer
+// }
+
+::ng-deep .settingModal {
+  width: 600px;
+
+  .content {
+    .row {
+      position: relative;
+      margin-bottom: 15px;
+
+      &.name,
+      &.resource {
+        input {
+          width: calc(100% - 80px);
+        }
+      }
+    }
+
+    label {
+      width: 80px;
+      display: inline-block;
+    }
+
+    .title {
+      div {
+        display: inline-block;
+        text-align: center;
+      }
+    }
+
+    .relation-content {
+      border: 1px solid #d9d9d9;
+      width: 100%;
+      border-radius: 3px;
+
+      .title {
+        background: #eee;
+        margin-bottom: 10px;
+        padding: 5px 0px;
+      }
+    }
+
+    .relation {
+      .relation-row {
+        margin-bottom: 15px;
+
+        .col {
+          padding: 0 5px;
+
+          display: inline-block;
+
+          input {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .duration {
+    display: inline-block;
+    margin-left: 20px;
+
+    nz-input-number {
+      width: 100px;
+    }
+  }
+
+  .relation-content {
+    width: calc(100% - 80px);
+    display: inline-block;
+    ;
+  }
+
+  // .line {
+  //     margin-top: 10px;
+  //     position: relative;
+  //     height: 20px;
+  //     /* text-align: center; */
+  //     border-bottom: 1px solid #419fe8;
+  //     margin-bottom: 10px;
+  //     width: 100%;
+  //     span {
+  //         position: absolute;
+  //         color: #419fe8;
+  //         padding: 10px;
+  //         background: #fff;
+  //         left: 50%;
+  //         transform: translateX(-50%);
+  //     }
+  // }
+  // .relation {
+  //     margin-top: 15px;
+  //     .row {
+  //         width: 100%;
+  //         height: 40px;
+  //         line-height: 40px;
+  //         padding: 0px 10px;
+  //     }
+  //     .title {
+  //         padding: 10px;
+  //         span {
+  //             display: inline-block;
+  //             text-align: center;
+  //         }
+  //         span:nth-child(1) {
+  //             width: 80px;
+
+  //         }
+  //         span:nth-child(2) {
+  //             width: 180px;
+  //         }
+  //         span:nth-child(3) {
+  //             width: 155px;
+  //         }
+  //         span:nth-child(4) {
+  //             width: 100px;
+  //         }
+  //     }
+  //     .row {
+  //         .item {
+  //             display: inline-block;
+  //         }
+  //         .item:nth-child(1) {
+  //             width: 80px;
+  //             .ant-input-number{
+  //                 width: 100%;
+  //             }
+  //         }
+  //         .item:nth-child(2) {
+  //             width: 180px;
+  //             text-align: center;
+  //             nz-select {
+  //                 width: 100%;
+  //             }
+  //         }
+  //         .item:nth-child(3) {
+  //             width: 160px;
+  //             text-align: center;
+  //         }
+  //         .item:nth-child(4) {
+  //             width: 100px;
+  //         }
+  //     }
+  //     .anticon-delete {
+  //         margin-left: 5px;
+  //     }
+  // }
+}
